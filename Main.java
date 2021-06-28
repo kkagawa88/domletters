@@ -1,10 +1,10 @@
 public class Main{
     public static void main(String[] args)
     {
-        Node ex = new Node();
-        System.out.println(ex.get_count());
-        Node ex2 = new Node('a');
-        System.out.println(ex2.get_count());
+        LinkedList ex3 = new LinkedList();
+        ex3.Add('a');
+        ex3.Add('a');
+
 
 
 
@@ -30,43 +30,51 @@ class LinkedList{
     protected Node head;
 
     LinkedList()
-        {head=null;System.out.println(1);}
+        {this.head=null;}
+    public void display(){
+        Node current =this.head;
+        while(current != null)
+        {
+
+        }
+    }
 
     //Add a letter & update count
     public void Add(char letter){
-        System.out.println(1);
         //if list is empty
-        if(head == null)
-            head = new Node(letter);
+        if(this.head == null)
+            this.head = new Node(letter);
         else
-            Add(letter, head);
+            Add(letter, this.head);
     }
     //recursively add letter & update count
     protected void Add(char letter, Node current)
     {
-        //Letter is unique - create new entry
-        if(current.Get_Next() == null)
-        {
-            Node temp = new Node(letter);
-            current.Set_Next(temp); 
+        //Check if letter matches - not unique
+        if(current.check_letter(letter)){
+            current.add_count();
         }
         else
         {
-            //Check if letter matches - not unique
-            if(current.check_letter(letter)){
-                current.add_count();
+            //Letter is unique - create new entry
+            if(current.Get_Next() == null)
+            {
+                Node temp = new Node(letter);
+                current.Set_Next(temp); 
             }
             //continue searching
             else
                 Add(letter, current.Get_Next());
         }
+        System.out.println(current.get_count());
+
         return;
     }
     //find largest count
     protected int largest()
     {
         int largest = 0;
-        Node current = head;
+        Node current = this.head;
         while(current != null)
         {
             //is there something larger than the largest?
