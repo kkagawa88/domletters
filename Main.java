@@ -11,10 +11,10 @@ public class Main{
         }
         
         Scanner reader = new Scanner(new FileInputStream(args[0]));
+        String content = reader.toString();
+        reader.close();
 
-        //Found at https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
-        String content  = new String(File.readAllBytes(reader));
-
+        domcount(content);
     }
   
     public static int domcount(String sentences){
