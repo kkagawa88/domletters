@@ -1,11 +1,25 @@
+import java.io.*;
+import java.util.Scanner;
+
 public class Main{
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException 
     {
+         // first check to see if the program was run with the command line argument
+        if(args.length < 1) {
+            System.out.println("Error, usage: java ClassName inputfile");
+            System.exit(1);
+        }
+        
+        Scanner reader = new Scanner(new FileInputStream(args[0]));
+
+        //Found at https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
+        String content  = new String(File.readAllBytes(reader));
 
     }
   
     public static int domcount(String sentences){
-    /*******************NOT MY WORK********************* */
+        int count = 0;
+        /*******************NOT MY WORK********************* */
         //can be found at: https://stackoverflow.com/questions/4674850/converting-a-sentence-string-to-a-string-array-of-words-in-java
 
         String[] words = sentences.split("\\s+");
@@ -13,11 +27,12 @@ public class Main{
             //check for a non-word character
             words[i] = words[i].replaceAll("[^\\w]", "");
         }
-    /*************************************************** */
+        /*************************************************** */
         for(int i=0; i < words.length; ++i)
-            {domcount(words[i])}
+            {count+=domcount(words[i]);}
+        return count;
     }
-    
+
     //domminant count 
     public static int domcount_word(String word) 
     {
