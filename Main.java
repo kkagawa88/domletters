@@ -1,19 +1,25 @@
 public class Main{
     public static void main(String[] args)
     {
-        LinkedList ex3 = new LinkedList();
-        ex3.Add('a');
-        ex3.Add('a');
 
-
-
-
-        //String word="Feedme";
-        //System.out.println(domcount(word));
     }
   
+    public static int domcount(String sentences){
+    /*******************NOT MY WORK********************* */
+        //can be found at: https://stackoverflow.com/questions/4674850/converting-a-sentence-string-to-a-string-array-of-words-in-java
+
+        String[] words = sentences.split("\\s+");
+        for (int i = 0; i < words.length; i++) {
+            //check for a non-word character
+            words[i] = words[i].replaceAll("[^\\w]", "");
+        }
+    /*************************************************** */
+        for(int i=0; i < words.length; ++i)
+            {domcount(words[i])}
+    }
+    
     //domminant count 
-    public static int domcount(String word) 
+    public static int domcount_word(String word) 
     {
         LinkedList domminant = new LinkedList();
         
@@ -31,13 +37,6 @@ class LinkedList{
 
     LinkedList()
         {this.head=null;}
-    public void display(){
-        Node current =this.head;
-        while(current != null)
-        {
-
-        }
-    }
 
     //Add a letter & update count
     public void Add(char letter){
@@ -80,7 +79,7 @@ class LinkedList{
             //is there something larger than the largest?
             if(largest <  current.get_count())
                 largest = current.get_count();
-            current.Get_Next();
+            current = current.Get_Next();
         }
         return largest;
     }
