@@ -4,8 +4,17 @@ public class Main{
         LinkedList ex3 = new LinkedList();
         ex3.Add('a');
         ex3.Add('a');
-
-
+        ex3.Add('a');
+        ex3.Add('a');
+        ex3.Add('b');
+        ex3.Add('b');
+        ex3.Add('c');
+        ex3.Add('c');
+        ex3.Add('c');
+        ex3.Add('c');
+        ex3.Add('c');
+        ex3.Add('c');
+        System.out.println(ex3.largest());
 
 
         //String word="Feedme";
@@ -60,13 +69,12 @@ class LinkedList{
             if(current.Get_Next() == null)
             {
                 Node temp = new Node(letter);
-                current.Set_Next(temp); 
+                current.Set_Next(temp);
             }
             //continue searching
             else
                 Add(letter, current.Get_Next());
         }
-        System.out.println(current.get_count());
 
         return;
     }
@@ -80,7 +88,7 @@ class LinkedList{
             //is there something larger than the largest?
             if(largest <  current.get_count())
                 largest = current.get_count();
-            current.Get_Next();
+            current = current.Get_Next();
         }
         return largest;
     }
