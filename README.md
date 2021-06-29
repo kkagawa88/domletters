@@ -38,7 +38,7 @@ first line should be something like `#!/usr/bin/python3`.*)
 
 To run the program, say
 
-    ./domletters <input.txt
+    java domletters.java swift.txt
 
 where `input.txt` is the input file to be processed.
 
