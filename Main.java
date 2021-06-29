@@ -2,48 +2,45 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Main{
+    private static Scanner input;    
     public static void main(String[] args) throws IOException 
     {
-        /*
-         // first check to see if the program was run with the command line argument
-        if(args.length < 1) {
-            System.out.println("Error, usage: java ClassName inputfile");
+        int count=0;
+        //https://stackoverflow.com/questions/40822533/input-a-text-file-through-command-line-in-java
+        //&& https://stackoverflow.com/questions/14169661/read-complete-file-without-using-loop-in-java
+        String str;
+
+        if(args.length == 0) {
+            System.out.println("File name not specified.");
             System.exit(1);
         }
-        
-        Scanner reader = new Scanner(new FileInputStream(args[0]));
-        String content = reader.toString();
-        reader.close();
+        try {
+            File file = new File(args[0]);
+            input = new Scanner(file);
+            FileInputStream fis = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            fis.read(data);
+            fis.close();
+            str = new String(data, "UTF-8");
 
-        */
-
-        
-        String sentences = new String("The bookkeeper and the beekeeper Giggled greatly. They were in unacrimonious union.");
-        domcount(sentences);
-
-        System.out.println(sentences);
-        String[] words = sentences.split("\\s+");
-        for(String word : words) {
-            System.out.println(word);
+            //https://www.jackrutorial.com/2018/06/java-split-string-by-space-and-newline.html
+            String[] words = str.split("\\s+");
+            for(String word : words) {
+                count+=domcount(word);
+            }
+        } 
+        catch (IOException ioException) 
+        {
+            System.err.println("Cannot open file.");
+            System.exit(1);
         }
-    }
-  
-    public static int domcount(String sentences)
-    {
-        int count = 0;
-        /*******************NOT MY WORK********************* */
-        //can be found at: https://stackoverflow.com/questions/4674850/converting-a-sentence-string-to-a-string-array-of-words-in-java
 
-        /*************************************************** */
-        /*
-        for(int i=0; i < words.length; ++i)
-            {count+=domcount(words[i]);}
-        */
-        return count;
+        System.err.println(count);
+
     }
 
     //domminant count 
-    public static int domcount_word(String word) 
+    public static int domcount(String word) 
     {
         LinkedList domminant = new LinkedList();
         

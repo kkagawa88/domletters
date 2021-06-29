@@ -29,18 +29,9 @@ upper and lowercase letters as equivalent. Examples:
 
 ## Build and Run
 
-(*These instructions are for a compiled language like
-C++. For an interpreted language like Python, delete these
-instructions and use those below.*)
+java Main.java filename.txt
 
-To build the program, type `make`. This will use the file
-named `Makefile` to compile the program.
-
-To run the program once it is built, say
-
-    ./domletters <input.txt
-
-where `input.txt` is the input file to be processed.
+filename.txt == sentence.txt or swift.txt
 
 ## Build and Run
 
