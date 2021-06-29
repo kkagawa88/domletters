@@ -1,48 +1,53 @@
 import java.io.*;
-import java.util.Scanner;
 
-public class Main{
+public class domletters{
     public static void main(String[] args) throws IOException 
     {
-        int count=0;
+        //Not copy pasted code, but I did take inspiration from the given links
         //https://stackoverflow.com/questions/40822533/input-a-text-file-through-command-line-in-java
-        //&& https://stackoverflow.com/questions/14169661/read-complete-file-without-using-loop-in-java
+        //ttps://stackoverflow.com/questions/14169661/read-complete-file-without-using-loop-in-java
+        //https://www.jackrutorial.com/2018/06/java-split-string-by-space-and-newline.html
+
+        int count=0;
         String str;
 
-        if(args.length == 0) {
-            System.out.println("File name not specified.");
+        //make sure that the file exists!
+        if(args.length == 0) 
+        {
+            System.out.println("File name not found.");
             System.exit(1);
         }
-        try {
+        try 
+        {
+            //Get the file name from input stream
             File file = new File(args[0]);
-            input = new Scanner(file);
+
+            //Read all of the data from the file, put it into one long string \
+            //this part is definitly copy pasted
             FileInputStream fis = new FileInputStream(file);
             byte[] data = new byte[(int) file.length()];
             fis.read(data);
             fis.close();
             str = new String(data, "UTF-8");
 
-            System.out.println("Before");
-            System.out.println(str);
-            System.out.println("After");
-            //https://www.jackrutorial.com/2018/06/java-split-string-by-space-and-newline.html
-
             //split the sentences into words
             String[] words = str.split("\\s+");
+            //For every word - count the dom and total it up
             for(String word : words) 
             {
-                System.err.println(word);
-                //only count words surrounded by white space
+                //only count words surrounded by white space - messy way of doing it
                 if(word.indexOf('.') == -1 && word.indexOf('"') == -1 && word.indexOf(',') == -1 && word.indexOf('?') == -1 && word.indexOf('-') == -1)
                     count+=domcount(word);
             }
         } 
+        //Whoops, ERROR!
         catch (IOException ioException) 
         {
             System.err.println("Cannot open file.");
             System.exit(1);
         }
 
+        //The final score
         System.err.println(count);
     }
 
