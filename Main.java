@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args) throws IOException 
     {
+        /*
          // first check to see if the program was run with the command line argument
         if(args.length < 1) {
             System.out.println("Error, usage: java ClassName inputfile");
@@ -14,22 +15,30 @@ public class Main{
         String content = reader.toString();
         reader.close();
 
-        domcount(content);
+        */
+
+        
+        String sentences = new String("The bookkeeper and the beekeeper Giggled greatly. They were in unacrimonious union.");
+        domcount(sentences);
+
+        System.out.println(sentences);
+        String[] words = sentences.split("\\s+");
+        for(String word : words) {
+            System.out.println(word);
+        }
     }
   
-    public static int domcount(String sentences){
+    public static int domcount(String sentences)
+    {
         int count = 0;
         /*******************NOT MY WORK********************* */
         //can be found at: https://stackoverflow.com/questions/4674850/converting-a-sentence-string-to-a-string-array-of-words-in-java
 
-        String[] words = sentences.split("\\s+");
-        for (int i = 0; i < words.length; i++) {
-            //check for a non-word character
-            words[i] = words[i].replaceAll("[^\\w]", "");
-        }
         /*************************************************** */
+        /*
         for(int i=0; i < words.length; ++i)
             {count+=domcount(words[i]);}
+        */
         return count;
     }
 
@@ -79,8 +88,7 @@ class LinkedList{
             //continue searching
             else
                 Add(letter, current.Get_Next());
-        }
-        System.out.println(current.get_count());
+        }        
 
         return;
     }
