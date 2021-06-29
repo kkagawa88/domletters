@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.Scanner;
 
 public class Main{
-    private static Scanner input;    
     public static void main(String[] args) throws IOException 
     {
         int count=0;
@@ -23,10 +22,19 @@ public class Main{
             fis.close();
             str = new String(data, "UTF-8");
 
+            System.out.println("Before");
+            System.out.println(str);
+            System.out.println("After");
             //https://www.jackrutorial.com/2018/06/java-split-string-by-space-and-newline.html
+
+            //split the sentences into words
             String[] words = str.split("\\s+");
-            for(String word : words) {
-                count+=domcount(word);
+            for(String word : words) 
+            {
+                System.err.println(word);
+                //only count words surrounded by white space
+                if(word.indexOf('.') == -1 && word.indexOf('"') == -1 && word.indexOf(',') == -1 && word.indexOf('?') == -1 && word.indexOf('-') == -1)
+                    count+=domcount(word);
             }
         } 
         catch (IOException ioException) 
@@ -36,7 +44,6 @@ public class Main{
         }
 
         System.err.println(count);
-
     }
 
     //domminant count 
@@ -86,7 +93,6 @@ class LinkedList{
             else
                 Add(letter, current.Get_Next());
         }        
-
         return;
     }
     //find largest count
